@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.os.Message
 import android.util.Log
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet.Constraint
+import com.google.android.material.snackbar.Snackbar
 import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
@@ -17,8 +20,34 @@ class MainActivity : AppCompatActivity() {
     fun showMessage(message:String){
         Log.i(TAG, message)
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        val obj:ConstraintLayout?=findViewById(R.id.mainconstraint)
+        if (obj != null){
+            Snackbar.make(obj,message,Snackbar.LENGTH_SHORT).show()
+        }
     }
-    fun onStart(){
-        showMessage("onCreate method is called")
+
+    override fun onStart() {
+        super.onStart()
+        showMessage("onStart method is called")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showMessage("onResume method is called")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        showMessage("onPause method is called")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        showMessage("onStop method is called")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        showMessage("onDestroy method is called")
     }
 }
